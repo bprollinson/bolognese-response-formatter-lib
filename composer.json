@@ -1,0 +1,17 @@
+{
+    "name": "bprollinson/bolognese-response-formatter-lib",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bprollinson/bolognese-controller-api"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/bprollinson/bolognese-response-formatter-api"
+        }
+    ],
+    "require": {
+        "bprollinson/bolognese-controller-api": "dev-master",
+        "bprollinson/bolognese-response-formatter-api": "dev-master"
+    }
+}
