@@ -6,19 +6,16 @@ require_once('vendor/bprollinson/bolognese-response-formatter-api/src/HTTPRespon
 
 class ResponseFormatter
 {
-    private $responseMappingFile;
+    private $responseMapping;
 
-    public function __construct($responseMappingFile)
+    public function __construct($responseMapping)
     {
-        $this->responseMappingFile = $responseMappingFile;
+        $this->responseMapping = $responseMapping;
     }
 
     public function format(MethodInvoked $methodInvoked)
     {
-        $responseMappingFileContents = file_get_contents($this->responseMappingFile);
-        $responseMapping = json_decode($responseMappingFileContents, true);
-
-        foreach ($responseMapping['mapping'] as $possibleResponseType)
+        foreach ($this->responseMapping['mapping'] as $possibleResponseType)
         {
             if ($methodInvoked->getResponse() == $possibleResponseType['key'])
             {
@@ -30,7 +27,7 @@ class ResponseFormatter
         }
 
         $responseBody = json_encode($methodInvoked->getResponseValue());
-        $defaultResponseType = $responseMapping['default'];
+        $defaultResponseType = $this->responseMapping['default'];
         $httpResponse = new HTTPResponse($defaultResponseType['httpStatusCode'], $defaultResponseType['headers'], $responseBody);
 
         return new ResponseFormatted($httpResponse);
