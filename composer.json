@@ -12,6 +12,7 @@
     ],
     "require": {
         "bprollinson/bolognese-controller-api": "dev-master",
-        "bprollinson/bolognese-response-formatter-api": "dev-master"
+        "bprollinson/bolognese-response-formatter-api": "dev-master",
+        "phpunit/phpunit": "^9.0.0"
     }
 }
